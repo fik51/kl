@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNCLE #AN7DAR IS HERE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* استبدل background.jpg برابط صورة الخلفية الخاصة بك */
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)), url('https://cdn.discordapp.com/attachments/1522547007384719370/1570432820378075227/image.png?ex=6af90d49&is=6af7bbc9&hm=f8c30e5a4cf99d2106b745bb494a88f1e2f3ca0d1a2cc714ca8156dbe8847ede&') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 550px;
+            gap: 14px;
+        }
+
+        /* إطار الصورة العلوية */
+        .top-banner {
+            width: 190px;
+            height: 95px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+            background: #111;
+        }
+
+        .top-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* العنوان الرئيسي المتوهج */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .text-green-glow {
+            color: #00ff66;
+            text-shadow: 0 0 8px rgba(0, 255, 102, 0.8), 0 0 18px rgba(0, 255, 102, 0.4);
+        }
+
+        .text-red-glow {
+            color: #ff2a2a;
+            text-shadow: 0 0 8px rgba(255, 42, 42, 0.8), 0 0 18px rgba(255, 42, 42, 0.4);
+        }
+
+        /* قسم أوامر التيرمينال */
+        .terminal-lines {
+            width: 100%;
+            max-width: 440px;
+            border-left: 2px solid #00ff66;
+            padding-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.78rem;
+            text-align: left;
+            margin: 4px 0;
+        }
+
+        .terminal-lines div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .t-green { color: #00ff66; text-shadow: 0 0 5px rgba(0, 255, 102, 0.5); }
+        .t-white { color: #e0e0e0; }
+        .t-red { color: #ff3333; text-shadow: 0 0 5px rgba(255, 51, 51, 0.6); }
+
+        /* الصندوق الداكن لمعلومات الجهاز */
+        .info-card {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(10, 12, 14, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 16px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-header {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.72rem;
+            color: #ff3b3b;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 6px rgba(255, 59, 59, 0.6);
+            margin-bottom: 4px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            row-gap: 6px;
+            font-size: 0.75rem;
+            text-align: left;
+        }
+
+        .spec-label {
+            color: #00ff66;
+            font-weight: bold;
+        }
+
+        .spec-value {
+            color: #ffffff;
+        }
+
+        /* الشريط الأحمر الداخلي */
+        .alert-bar {
+            background: rgba(120, 10, 15, 0.45);
+            border: 1px solid rgba(255, 40, 40, 0.35);
+            border-radius: 4px;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            margin-top: 6px;
+        }
+
+        .alert-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff6666;
+            font-weight: bold;
+        }
+
+        .red-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #ff2a2a;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #ff2a2a;
+            animation: blink 1s infinite;
+        }
+
+        .gg-badge {
+            background: #ff2a2a;
+            color: #000;
+            font-weight: 900;
+            padding: 1px 5px;
+            border-radius: 2px;
+            font-size: 0.65rem;
+        }
+
+        .alert-right {
+            color: rgba(255, 100, 100, 0.4);
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+        }
+
+        /* النص السفلي داخل الصندوق */
+        .target-acquired {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: #ff3333;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255, 51, 51, 0.7);
+            margin-top: 4px;
+        }
+
+        .status-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 8px;
+            font-size: 0.68rem;
+            color: #00ff66;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* الروابط والتوقيع بالأسفل */
+        .bottom-links {
+            margin-top: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .discord-line {
+            font-size: 0.72rem;
+            color: #cccccc;
+            letter-spacing: 1px;
+        }
+
+        .discord-line a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .discord-line a:hover {
+            color: #00ff66;
+        }
+
+        .sub-footer {
+            font-size: 0.58rem;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 1.5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- الصورة العلوية -->
+        <div class="top-banner">
+            <img src="avatar.jpg" alt="Banner">
+        </div>
+
+        <!-- العنوان المتوهج -->
+        <div class="main-title">
+            <span class="text-green-glow">UNCLE</span>
+            <span class="text-red-glow">#AN7DAR</span>
+            <span class="text-green-glow">IS HERE</span>
+        </div>
+
+        <!-- أسطر الأوامر -->
+        <div class="terminal-lines">
+            <div><span class="t-green">&gt; root@an7dar:~$</span> <span class="t-white">ls</span></div>
+            <div><span class="t-green">&gt; The 666 ? Are You Being Attacked ?</span> <span class="t-white">Yes</span></div>
+            <div><span class="t-green">&gt; root@an7dar:~$</span> <span class="t-white">.Sudo RM ?</span></div>
+            <div><span class="t-red">&gt; Oh You Are Being Hacked</span></div>
+        </div>
+
+        <!-- بطاقة المعلومات -->
+        <div class="info-card">
+            <div class="card-header">TARGET INITIALIZING DONE</div>
+
+            <div class="specs-grid">
+                <div class="spec-label">IP:</div>
+                <div class="spec-value" id="ip">Fetching...</div>
+
+                <div class="spec-label">Browser:</div>
+                <div class="spec-value" id="browser">Detecting...</div>
+
+                <div class="spec-label">OS:</div>
+                <div class="spec-value" id="os">Detecting...</div>
+
+                <div class="spec-label">Screen:</div>
+                <div class="spec-value" id="screen">Detecting...</div>
+
+                <div class="spec-label">Cores:</div>
+                <div class="spec-value" id="cores">Detecting...</div>
+
+                <div class="spec-label">RAM:</div>
+                <div class="spec-value" id="ram">Detecting...</div>
+            </div>
+
+            <div class="alert-bar">
+                <div class="alert-left">
+                    <span class="red-dot"></span>
+                    <span>CHAT FLOOD</span>
+                    <span class="gg-badge">GG</span>
+                </div>
+                <div class="alert-right">4 / AN7DAR ON TOP</div>
+            </div>
+
+            <div class="target-acquired">TARGET ACQUIRED</div>
+
+            <div class="status-footer">
+                <span>•</span> <span>System In Control</span>
+            </div>
+        </div>
+
+        <!-- التوقيع ورابط الديسكورد -->
+        <div class="bottom-links">
+            <div class="discord-line">
+                #AN7DAR #BRED #666 • <a href="https://discord.gg/P2vNaTaGVJ" target="_blank">discord.gg/P2vNaTaGVJ</a>
+            </div>
+            <div class="sub-footer">
+                • #You Got Fucked By Group Adolf •
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. جلب عنوان الـ IP الحقيقي
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('ip').textContent = data.ip;
+            })
+            .catch(() => {
+                document.getElementById('ip').textContent = '192.168.1.1';
+            });
+
+        // 2. التعرف على المتصفح
+        const ua = navigator.userAgent;
+        let browser = "Unknown";
+        if (ua.includes("Edg")) browser = "Edge";
+        else if (ua.includes("Chrome")) browser = "Chrome";
+        else if (ua.includes("Firefox")) browser = "Firefox";
+        else if (ua.includes("Safari")) browser = "Safari";
+        document.getElementById('browser').textContent = browser;
+
+        // 3. التعرف على نظام التشغيل
+        let os = "Unknown OS";
+        if (ua.includes("Win")) os = "Windows";
+        else if (ua.includes("Mac")) os = "MacOS";
+        else if (ua.includes("Linux")) os = "Linux";
+        else if (ua.includes("Android")) os = "Android";
+        else if (ua.includes("iPhone")) os = "iOS";
+        document.getElementById('os').textContent = os;
+
+        // 4. أبعاد الشاشة
+        document.getElementById('screen').textContent = `${window.screen.width}x${window.screen.height}`;
+
+        // 5. عدد أنوية المعالج (Cores)
+        document.getElementById('cores').textContent = navigator.hardwareConcurrency || "8";
+
+        // 6. حجم الرام (RAM)
+        document.getElementById('ram').textContent = navigator.deviceMemory ? `${navigator.deviceMemory}GB` : "8GB";
+    </script>
+
+</body>
+</html>
